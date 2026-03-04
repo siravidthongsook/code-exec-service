@@ -1,0 +1,17 @@
+services:
+  code-exec-service:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    privileged: true
+    environment:
+      CODE_EXEC_PORT: 7070
+      CODE_EXEC_USE_NSJAIL: 1
+      CODE_EXEC_TMP_DIR: /tmp/code-exec
+      CODE_EXEC_NSJAIL_CONFIG: /app/nsjail/nsjail.cfg
+      CODE_EXEC_MAX_OUTPUT_BYTES: 65536
+      CODE_EXEC_MAX_SOURCE_BYTES: 262144
+      CODE_EXEC_MAX_STDIN_BYTES: 262144
+    ports:
+      - "7070:7070"
+    restart: unless-stopped

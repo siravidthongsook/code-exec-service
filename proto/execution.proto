@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package codeexec.v1;
+
+option go_package = "codeexecservice/proto/codeexecv1;codeexecv1";
+
+service CodeExecutionService {
+  rpc Execute(ExecuteRequest) returns (ExecuteResponse);
+}
+
+message ExecuteRequest {
+  string language = 1;
+  string source = 2;
+  string stdin = 3;
+  int32 time_limit_ms = 4;
+  int32 memory_limit_kb = 5;
+  map<string, string> runtime_overrides = 6;
+  string request_id = 7;
+
+  // Transitional fields for current online grader compatibility.
+  string compile_cmd = 8;
+  string run_cmd = 9;
+  int32 max_output_bytes = 10;
+  bool allow_network = 11;
+}
+
+message ExecuteResponse {
+  string stdout = 1;
+  string stderr = 2;
+  int32 exit_code = 3;
+  int32 time_ms = 4;
+  int32 memory_kb = 5;
+  string status = 6; // OK, TLE, MLE, CE, RE, INTERNAL
+  string sandbox_error = 7;
+  bool output_truncated = 8;
+}
