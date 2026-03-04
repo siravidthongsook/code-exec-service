@@ -26,6 +26,7 @@ This module is intentionally independent from `online_grader_for_my_student` so 
 - `GET /health`
 - `POST /v1/execute`
 - `POST /run` (legacy compatibility mode)
+- gRPC `codeexec.v1.CodeExecutionService/Execute` on port `9090`
 
 `/v1/execute` maps to statuses: `OK`, `TLE`, `MLE`, `CE`, `RE`, `INTERNAL`.
 

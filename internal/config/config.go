@@ -11,6 +11,7 @@ import (
 
 type Config struct {
 	Addr              string
+	GRPCAddr          string
 	ReadHeaderTimeout int
 	MaxBodyBytes      int64
 	Executor          executor.Options
@@ -19,6 +20,8 @@ type Config struct {
 func Load() Config {
 	port := firstNonEmpty(os.Getenv("CODE_EXEC_PORT"), "7070")
 	addr := firstNonEmpty(os.Getenv("CODE_EXEC_ADDR"), ":"+port)
+	grpcPort := firstNonEmpty(os.Getenv("CODE_EXEC_GRPC_PORT"), "9090")
+	grpcAddr := firstNonEmpty(os.Getenv("CODE_EXEC_GRPC_ADDR"), ":"+grpcPort)
 	tmpDir := firstNonEmpty(os.Getenv("CODE_EXEC_TMP_DIR"), "/tmp/code-exec")
 
 	compileTimeoutMs := envInt("CODE_EXEC_COMPILE_TIMEOUT_MS", 10000)
@@ -41,6 +44,7 @@ func Load() Config {
 
 	return Config{
 		Addr:              addr,
+		GRPCAddr:          grpcAddr,
 		ReadHeaderTimeout: readHeaderTimeout,
 		MaxBodyBytes:      maxBodyBytes,
 		Executor: executor.Options{

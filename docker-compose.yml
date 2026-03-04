@@ -6,6 +6,7 @@ services:
     privileged: true
     environment:
       CODE_EXEC_PORT: 7070
+      CODE_EXEC_GRPC_PORT: 9090
       CODE_EXEC_USE_NSJAIL: 1
       CODE_EXEC_TMP_DIR: /tmp/code-exec
       CODE_EXEC_NSJAIL_CONFIG: /app/nsjail/nsjail.cfg
@@ -14,4 +15,5 @@ services:
       CODE_EXEC_MAX_STDIN_BYTES: 262144
     ports:
       - "7070:7070"
+      - "9090:9090"
     restart: unless-stopped

@@ -1,0 +1,14 @@
+version: v1
+
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: .
+    opt:
+      - paths=import
+      - module=codeexecservice
+
+  - plugin: buf.build/grpc/go
+    out: .
+    opt:
+      - paths=import
+      - module=codeexecservice

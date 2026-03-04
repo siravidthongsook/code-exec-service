@@ -48,4 +48,5 @@ ENV CODE_EXEC_USE_NSJAIL=1
 ENV CODE_EXEC_NSJAIL_CONFIG=/app/nsjail/nsjail.cfg
 
 EXPOSE 7070
+EXPOSE 9090
 CMD ["/app/code-exec-service"]
